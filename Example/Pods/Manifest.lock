@@ -1,5 +1,5 @@
 PODS:
-  - QSDatePicker (0.0.8)
+  - QSDatePicker (0.0.9)
 
 DEPENDENCIES:
   - QSDatePicker (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  QSDatePicker: 4501cb1713cbfb07ba175521aab12cac4bfee3ba
+  QSDatePicker: 9f80b4408c4cbe041e67034f622a7938ccf2f9a0
 
 PODFILE CHECKSUM: 325e83f3be328e8905c2dcd8b5887f9fe011f314
 

@@ -51,7 +51,7 @@ extension Date{
         return newDate
     }
     
-    func stringWithFormat(format:String) -> String{
+    public func stringWithFormat(format:String) -> String{
         let formatter = DateFormatter()
         formatter.dateFormat = format
         return formatter.string(from: self)
