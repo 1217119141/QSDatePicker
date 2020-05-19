@@ -106,7 +106,7 @@ typealias DoneBlock = (_ date:Date) -> ()
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    init(dateStyle style: QSDateStyle, completeBlock: @escaping (Date) -> Void) {
+    public init(dateStyle style: QSDateStyle, completeBlock: @escaping (Date) -> Void) {
         super.init(frame: UIScreen.main.bounds)
         datePickerStyle = style
         switch style {
@@ -135,7 +135,7 @@ typealias DoneBlock = (_ date:Date) -> ()
             completeBlock(date)
         }
     }
-    init(dateStyle style: QSDateStyle, scrollTo date: Date, completeBlock: @escaping (Date) -> Void) {
+    public init(dateStyle style: QSDateStyle, scrollTo date: Date, completeBlock: @escaping (Date) -> Void) {
         super.init(frame: UIScreen.main.bounds)
         datePickerStyle = style
         scrollToDate = date
