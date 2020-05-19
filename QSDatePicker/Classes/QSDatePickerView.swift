@@ -17,7 +17,7 @@ let isFullScreen = isIphoneX_XS || isIphoneXR_XSMax
 let ALD_TabbarSafeBottomMargin: CGFloat = isFullScreen ? 34 : 0
 
 typealias DoneBlock = (_ date:Date) -> ()
-@objc public class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate {
+public class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate {
     enum QSDateStyle {
         case DateStyleShowYearMonthDayHourMinute,//年月日时分
         DateStyleShowMonthDayHourMinute,//月日时分
@@ -289,7 +289,7 @@ typealias DoneBlock = (_ date:Date) -> ()
         return mutableArray
     }
 
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         switch datePickerStyle {
         case .DateStyleShowYearMonthDayHourMinute:
             addLabel(withName: ["年", "月", "日", "时", "分"])
@@ -321,7 +321,7 @@ typealias DoneBlock = (_ date:Date) -> ()
         }
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         let numberArr = getNumberOfRowsInComponent()
         return numberArr[component]
     }
