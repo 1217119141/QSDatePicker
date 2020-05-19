@@ -355,7 +355,7 @@ extension Date{
         let selfStr = fmt.string(from: self)
         return fmt.date(from: selfStr)!
     }
-    func dateWithFormatter(formatter:String) -> Date{
+    public func dateWithFormatter(formatter:String) -> Date{
         let fmt = DateFormatter()
         fmt.dateFormat = formatter
         let selfStr = fmt.string(from: self)

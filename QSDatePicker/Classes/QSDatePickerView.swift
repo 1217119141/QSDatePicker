@@ -30,34 +30,34 @@ typealias DoneBlock = (_ date:Date) -> ()
         DateStyleShowDayHourMinute//日时分
     }
     /// 底部背景颜色(默认白色)
-    var bottomBackGroundColor:UIColor = UIColor.white{
+    public var bottomBackGroundColor:UIColor = UIColor.white{
         didSet{
             buttomView.backgroundColor = bottomBackGroundColor
         }
     }
     /// 按钮背景颜色(默认白色)
-    var btnBackGroundColor:UIColor = UIColor.white{
+    public var btnBackGroundColor:UIColor = UIColor.white{
         didSet{
             doneBtn.backgroundColor = btnBackGroundColor
             closeBtn.backgroundColor = btnBackGroundColor
         }
     }
     /// 按钮字体颜色(默认黑色)
-    var btnTitleColor:UIColor = UIColor.black{
+    public var btnTitleColor:UIColor = UIColor.black{
         didSet{
             doneBtn.setTitleColor(btnTitleColor, for: .normal)
             closeBtn.setTitleColor(btnTitleColor, for: .normal)
         }
     }
     /// 按钮字体大小
-    var btnTitleFont:UIFont = UIFont.systemFont(ofSize: 16){
+    public var btnTitleFont:UIFont = UIFont.systemFont(ofSize: 16){
         didSet{
             doneBtn.titleLabel?.font = btnTitleFont
             closeBtn.titleLabel?.font = btnTitleFont
         }
     }
     /// 年-月-日-时-分 文字颜色(默认黑色)
-    var dateLabelColor:UIColor = UIColor.black{
+    public var dateLabelColor:UIColor = UIColor.black{
         didSet{
             for subView in buttomView.subviews {
                 if let laebl = subView as? UILabel {
@@ -68,7 +68,7 @@ typealias DoneBlock = (_ date:Date) -> ()
     }
     
     /// 滚轮日期颜色(默认黑色)
-    var datePickerColor:UIColor = UIColor.black
+    public var datePickerColor:UIColor = UIColor.black
     
     private let topHeight:CGFloat = 44
     private let btnWidth:CGFloat = 60
@@ -77,10 +77,10 @@ typealias DoneBlock = (_ date:Date) -> ()
     private let maxYear = 2099
     
     /// 限制最大时间（默认2099）datePicker大于最大日期则滚动回最大限制日期
-    var maxLimitDate = Date.date(datestr: "2099-12-31 23:59", WithFormat: "yyyy-MM-dd HH:mm")
+    public var maxLimitDate = Date.date(datestr: "2099-12-31 23:59", WithFormat: "yyyy-MM-dd HH:mm")
     
     /// 限制最小时间（默认1900） datePicker小于最小日期则滚动回最小限制日期
-    var minLimitDate = Date.date(datestr: "1900-01-01 00:00", WithFormat: "yyyy-MM-dd HH:mm")
+    public var minLimitDate = Date.date(datestr: "1900-01-01 00:00", WithFormat: "yyyy-MM-dd HH:mm")
     
     private var doneBlock:DoneBlock!
     private var datePickerStyle:QSDateStyle = .DateStyleShowYearMonthDayHourMinute
@@ -596,14 +596,14 @@ typealias DoneBlock = (_ date:Date) -> ()
         }
         return true
     }
-    func show(){
+    public func show(){
         UIApplication.shared.keyWindow?.addSubview(self)
         UIView.animate(withDuration: 0.3) {
             self.backgroundColor = UIColor.init(white: 0, alpha: 0.4)
             self.layoutIfNeeded()
         }
     }
-    @objc func dismiss(){
+    @objc public func dismiss(){
         UIView.animate(withDuration: 0.3, animations: {
             self.backgroundColor = UIColor.init(white: 0, alpha: 0)
             self.layoutIfNeeded()
