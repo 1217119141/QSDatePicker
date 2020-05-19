@@ -17,7 +17,7 @@ let isFullScreen = isIphoneX_XS || isIphoneXR_XSMax
 let ALD_TabbarSafeBottomMargin: CGFloat = isFullScreen ? 34 : 0
 
 typealias DoneBlock = (_ date:Date) -> ()
-public class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate {
+@objc public class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate {
     enum QSDateStyle {
         case DateStyleShowYearMonthDayHourMinute,//年月日时分
         DateStyleShowMonthDayHourMinute,//月日时分
@@ -361,10 +361,10 @@ public class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSourc
         }
     }
 
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    private func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 40
     }
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    private func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var customLabel = view as? UILabel
         if customLabel == nil {
             customLabel = UILabel()
@@ -457,7 +457,7 @@ public class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSourc
         customLabel?.textColor = datePickerColor
         return customLabel!
     }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    private func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch datePickerStyle {
         case .DateStyleShowYearMonthDayHourMinute:
             if component == 0 {
@@ -590,7 +590,7 @@ public class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSourc
         }
         startDate = scrollToDate
     }
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    private func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if touch.view!.isDescendant(of: self.buttomView){
             return false
         }
