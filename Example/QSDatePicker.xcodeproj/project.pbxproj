@@ -41,12 +41,12 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6DD98D576D293FE408B97B6B /* Pods-QSDatePicker_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QSDatePicker_Example.release.xcconfig"; path = "Target Support Files/Pods-QSDatePicker_Example/Pods-QSDatePicker_Example.release.xcconfig"; sourceTree = "<group>"; };
-		77495FAEFC9872BF70CF4F20 /* QSDatePicker.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = QSDatePicker.podspec; path = ../QSDatePicker.podspec; sourceTree = "<group>"; };
+		77495FAEFC9872BF70CF4F20 /* QSDatePicker.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = QSDatePicker.podspec; path = ../QSDatePicker.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8DBEC74A5E737C98354DBB11 /* Pods-QSDatePicker_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QSDatePicker_Tests.release.xcconfig"; path = "Target Support Files/Pods-QSDatePicker_Tests/Pods-QSDatePicker_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A400117B82432E87F8D85DDA /* Pods_QSDatePicker_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QSDatePicker_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B79AD8E3A8A913822F514531 /* Pods-QSDatePicker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QSDatePicker_Example.debug.xcconfig"; path = "Target Support Files/Pods-QSDatePicker_Example/Pods-QSDatePicker_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		C6FE6698D05D0FBC33550D85 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		EA598340D1C52A9E66F5BF1D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C6FE6698D05D0FBC33550D85 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		EA598340D1C52A9E66F5BF1D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,6 @@
 				3C0A99CC949F383889705705 /* Pods-QSDatePicker_Tests.debug.xcconfig */,
 				8DBEC74A5E737C98354DBB11 /* Pods-QSDatePicker_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);

@@ -1,0 +1,6 @@
+framework module QSDatePicker {
+  umbrella header "QSDatePicker-umbrella.h"
+
+  export *
+  module * { export * }
+}

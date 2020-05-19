@@ -1,0 +1,22 @@
+{
+  "name": "QSDatePicker",
+  "version": "0.1.0",
+  "summary": "A short description of QSDatePicker.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/qianshuai/QSDatePicker",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "qianshuai": "1217119141@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/qianshuai/QSDatePicker.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "QSDatePicker/Classes/*"
+}

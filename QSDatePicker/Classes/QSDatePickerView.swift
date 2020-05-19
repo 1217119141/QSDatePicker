@@ -8,13 +8,13 @@
 
 import UIKit
 
-let QSScreenWidth = UIScreen.main.bounds.width
-let QSScreenHeight = UIScreen.main.bounds.height
+let ALDScreenWidth = UIScreen.main.bounds.width
+let ALDScreenHeight = UIScreen.main.bounds.height
 
-let QS_isIphoneX_XS = QSScreenWidth == 375 && QSScreenHeight == 812 ? true : false
-let QS_isIphoneXR_XSMax = QSScreenWidth == 414 && QSScreenHeight == 896 ? true : false
-let QS_isFullScreen = QS_isIphoneX_XS || QS_isIphoneXR_XSMax
-let QS_TabbarSafeBottomMargin: CGFloat = QS_isFullScreen ? 34 : 0
+let isIphoneX_XS = ALDScreenWidth == 375 && ALDScreenHeight == 812 ? true : false
+let isIphoneXR_XSMax = ALDScreenWidth == 414 && ALDScreenHeight == 896 ? true : false
+let isFullScreen = isIphoneX_XS || isIphoneXR_XSMax
+let ALD_TabbarSafeBottomMargin: CGFloat = isFullScreen ? 34 : 0
 
 typealias DoneBlock = (_ date:Date) -> ()
 class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate {
@@ -166,7 +166,7 @@ class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSource,UIGes
         }
     }
     private lazy var buttomView:UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: QSScreenHeight - datePickerHeight - topHeight - QS_TabbarSafeBottomMargin, width: QSScreenWidth, height: datePickerHeight + topHeight + QS_TabbarSafeBottomMargin))
+        let view = UIView(frame: CGRect(x: 0, y: ALDScreenHeight - datePickerHeight - topHeight - ALD_TabbarSafeBottomMargin, width: ALDScreenWidth, height: datePickerHeight + topHeight + ALD_TabbarSafeBottomMargin))
         view.backgroundColor = bottomBackGroundColor
         return view
     }()
@@ -207,7 +207,8 @@ class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSource,UIGes
         self.addGestureRecognizer(tap)
         
         self.addSubview(buttomView)
-        UIApplication.shared.keyWindow?.bringSubviewToFront(self)
+        
+        UIApplication.shared.keyWindow?.addSubview(self)
         
         closeBtn.frame = CGRect(x: 0, y: 0, width: btnWidth, height: topHeight)
         self.buttomView.addSubview(closeBtn)

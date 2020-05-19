@@ -1,0 +1,16 @@
+PODS:
+  - QSDatePicker (0.1.0)
+
+DEPENDENCIES:
+  - QSDatePicker (from `../`)
+
+EXTERNAL SOURCES:
+  QSDatePicker:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  QSDatePicker: 09a1b1bdcd65e40e8eec374ff12fca2b1194c8be
+
+PODFILE CHECKSUM: 325e83f3be328e8905c2dcd8b5887f9fe011f314
+
+COCOAPODS: 1.9.1
