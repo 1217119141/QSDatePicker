@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'QSDatePicker_Example' do
+  pod 'QSDatePicker', :path => '../'
+
+  target 'QSDatePicker_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
