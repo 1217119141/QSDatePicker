@@ -18,7 +18,7 @@ let ALD_TabbarSafeBottomMargin: CGFloat = isFullScreen ? 34 : 0
 
 typealias DoneBlock = (_ date:Date) -> ()
 @objc public class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate {
-    enum QSDateStyle {
+    public enum QSDateStyle {
         case DateStyleShowYearMonthDayHourMinute,//年月日时分
         DateStyleShowMonthDayHourMinute,//月日时分
         DateStyleShowYearMonthDay,//年月日
