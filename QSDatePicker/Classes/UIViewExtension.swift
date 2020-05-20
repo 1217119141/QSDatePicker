@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIView{
+public extension UIView{
     
     /// 起点x坐标
     var x : CGFloat {

@@ -9,7 +9,7 @@
 import Foundation
 
 let componentFlags: Set<Calendar.Component> = [.year, .month, .day, .weekOfMonth, .hour, .minute, .second, .weekday, .weekdayOrdinal]
-extension Date{
+public extension Date{
     static var currentCalendarSharedCalendar: Calendar? = nil
     
     static func currentCalendar() -> Calendar? {
