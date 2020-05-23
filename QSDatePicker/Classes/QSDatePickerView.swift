@@ -8,56 +8,59 @@
 
 import UIKit
 
-let ALDScreenWidth = UIScreen.main.bounds.width
-let ALDScreenHeight = UIScreen.main.bounds.height
+let ScreenWidth = UIScreen.main.bounds.width
+let ScreenHeight = UIScreen.main.bounds.height
 
-let isIphoneX_XS = ALDScreenWidth == 375 && ALDScreenHeight == 812 ? true : false
-let isIphoneXR_XSMax = ALDScreenWidth == 414 && ALDScreenHeight == 896 ? true : false
+let isIphoneX_XS = ScreenWidth == 375 && ScreenHeight == 812 ? true : false
+let isIphoneXR_XSMax = ScreenWidth == 414 && ScreenHeight == 896 ? true : false
 let isFullScreen = isIphoneX_XS || isIphoneXR_XSMax
-let ALD_TabbarSafeBottomMargin: CGFloat = isFullScreen ? 34 : 0
+let TabbarSafeBottomMargin: CGFloat = isFullScreen ? 34 : 0
 
 typealias DoneBlock = (_ date:Date) -> ()
-@objc public class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate {
-    public enum QSDateStyle {
-        case DateStyleShowYearMonthDayHourMinute,//年月日时分
-        DateStyleShowMonthDayHourMinute,//月日时分
-        DateStyleShowYearMonthDay,//年月日
-        DateStyleShowYearMonth,//年月
-        DateStyleShowMonthDay,//月日
-        DateStyleShowHourMinute,//时分
-        DateStyleShowYear,//年
-        DateStyleShowMonth,//月
-        DateStyleShowDayHourMinute//日时分
-    }
+
+public enum QSDateStyle {
+    case DateStyleShowYearMonthDayHourMinute,//年月日时分
+    DateStyleShowMonthDayHourMinute,//月日时分
+    DateStyleShowYearMonthDay,//年月日
+    DateStyleShowYearMonth,//年月
+    DateStyleShowMonthDay,//月日
+    DateStyleShowHourMinute,//时分
+    DateStyleShowYear,//年
+    DateStyleShowMonth,//月
+    DateStyleShowDayHourMinute//日时分
+}
+
+class QSDatePickerView: UIView,UIPickerViewDelegate,UIPickerViewDataSource,UIGestureRecognizerDelegate {
+    
     /// 底部背景颜色(默认白色)
-    public var bottomBackGroundColor:UIColor = UIColor.white{
+    var bottomBackGroundColor:UIColor = UIColor.white{
         didSet{
             buttomView.backgroundColor = bottomBackGroundColor
         }
     }
     /// 按钮背景颜色(默认白色)
-    public var btnBackGroundColor:UIColor = UIColor.white{
+    var btnBackGroundColor:UIColor = UIColor.white{
         didSet{
             doneBtn.backgroundColor = btnBackGroundColor
             closeBtn.backgroundColor = btnBackGroundColor
         }
     }
     /// 按钮字体颜色(默认黑色)
-    public var btnTitleColor:UIColor = UIColor.black{
+    var btnTitleColor:UIColor = UIColor.black{
         didSet{
             doneBtn.setTitleColor(btnTitleColor, for: .normal)
             closeBtn.setTitleColor(btnTitleColor, for: .normal)
         }
     }
     /// 按钮字体大小
-    public var btnTitleFont:UIFont = UIFont.systemFont(ofSize: 16){
+    var btnTitleFont:UIFont = UIFont.systemFont(ofSize: 16){
         didSet{
             doneBtn.titleLabel?.font = btnTitleFont
             closeBtn.titleLabel?.font = btnTitleFont
         }
     }
     /// 年-月-日-时-分 文字颜色(默认黑色)
-    public var dateLabelColor:UIColor = UIColor.black{
+    var dateLabelColor:UIColor = UIColor.black{
         didSet{
             for subView in buttomView.subviews {
                 if let laebl = subView as? UILabel {
@@ -68,7 +71,7 @@ typealias DoneBlock = (_ date:Date) -> ()
     }
     
     /// 滚轮日期颜色(默认黑色)
-    public var datePickerColor:UIColor = UIColor.black
+    var datePickerColor:UIColor = UIColor.black
     
     private let topHeight:CGFloat = 44
     private let btnWidth:CGFloat = 60
@@ -77,10 +80,10 @@ typealias DoneBlock = (_ date:Date) -> ()
     private let maxYear = 2099
     
     /// 限制最大时间（默认2099）datePicker大于最大日期则滚动回最大限制日期
-    public var maxLimitDate = Date.date(datestr: "2099-12-31 23:59", WithFormat: "yyyy-MM-dd HH:mm")
+    var maxLimitDate = Date.date(datestr: "2099-12-31 23:59", WithFormat: "yyyy-MM-dd HH:mm")
     
     /// 限制最小时间（默认1900） datePicker小于最小日期则滚动回最小限制日期
-    public var minLimitDate = Date.date(datestr: "1900-01-01 00:00", WithFormat: "yyyy-MM-dd HH:mm")
+    var minLimitDate = Date.date(datestr: "1900-01-01 00:00", WithFormat: "yyyy-MM-dd HH:mm")
     
     private var doneBlock:DoneBlock!
     private var datePickerStyle:QSDateStyle = .DateStyleShowYearMonthDayHourMinute
@@ -103,10 +106,10 @@ typealias DoneBlock = (_ date:Date) -> ()
     
     private var startDate:Date = Date()
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    public init(dateStyle style: QSDateStyle, completeBlock: @escaping (Date) -> Void) {
+    init(dateStyle style: QSDateStyle, completeBlock: @escaping (Date) -> Void) {
         super.init(frame: UIScreen.main.bounds)
         datePickerStyle = style
         switch style {
@@ -135,7 +138,7 @@ typealias DoneBlock = (_ date:Date) -> ()
             completeBlock(date)
         }
     }
-    public init(dateStyle style: QSDateStyle, scrollTo date: Date, completeBlock: @escaping (Date) -> Void) {
+    init(dateStyle style: QSDateStyle, scrollTo date: Date, completeBlock: @escaping (Date) -> Void) {
         super.init(frame: UIScreen.main.bounds)
         datePickerStyle = style
         scrollToDate = date
@@ -166,7 +169,7 @@ typealias DoneBlock = (_ date:Date) -> ()
         }
     }
     private lazy var buttomView:UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: ALDScreenHeight - datePickerHeight - topHeight - ALD_TabbarSafeBottomMargin, width: ALDScreenWidth, height: datePickerHeight + topHeight + ALD_TabbarSafeBottomMargin))
+        let view = UIView(frame: CGRect(x: 0, y: ScreenHeight - datePickerHeight - topHeight - TabbarSafeBottomMargin, width: ScreenWidth, height: datePickerHeight + topHeight + TabbarSafeBottomMargin))
         view.backgroundColor = bottomBackGroundColor
         return view
     }()
@@ -208,15 +211,13 @@ typealias DoneBlock = (_ date:Date) -> ()
         
         self.addSubview(buttomView)
         
-        UIApplication.shared.keyWindow?.addSubview(self)
-        
         closeBtn.frame = CGRect(x: 0, y: 0, width: btnWidth, height: topHeight)
         self.buttomView.addSubview(closeBtn)
         
-        doneBtn.frame = CGRect(x: self.width - btnWidth, y: 0, width: btnWidth, height: topHeight)
+        doneBtn.frame = CGRect(x: self.frame.size.width - btnWidth, y: 0, width: btnWidth, height: topHeight)
         self.buttomView.addSubview(doneBtn)
         
-        datePicker.frame = CGRect(x: 0, y: doneBtn.bottom, width: self.width, height: datePickerHeight)
+        datePicker.frame = CGRect(x: 0, y: 44, width: self.frame.size.width, height: datePickerHeight)
         self.buttomView.addSubview(datePicker)
     }
     func defaultConfig(){
@@ -264,11 +265,11 @@ typealias DoneBlock = (_ date:Date) -> ()
         for i in 0..<(nameArr.count) {
             var a:CGFloat = 0
             if i == 0 && (datePickerStyle == .DateStyleShowYear || datePickerStyle == .DateStyleShowYearMonth || datePickerStyle == .DateStyleShowYearMonthDay || datePickerStyle == .DateStyleShowYearMonthDayHourMinute){
-                a = datePicker.width / CGFloat(nameArr.count * 2) + 20
+                a = datePicker.frame.size.width / CGFloat(nameArr.count * 2) + 20
             } else {
-                a = datePicker.width / CGFloat(nameArr.count * 2) + 10
+                a = datePicker.frame.size.width / CGFloat(nameArr.count * 2) + 10
             }
-            let b = datePicker.width / CGFloat(nameArr.count) * CGFloat(i)
+            let b = datePicker.frame.size.width / CGFloat(nameArr.count) * CGFloat(i)
             let labelX = a + b
             let label = UILabel(frame: CGRect(x: labelX, y: datePicker.frame.size.height / 2 - 7.5 + topHeight, width: 15, height: 15))
             label.text = nameArr[i]
@@ -289,7 +290,7 @@ typealias DoneBlock = (_ date:Date) -> ()
         return mutableArray
     }
 
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         switch datePickerStyle {
         case .DateStyleShowYearMonthDayHourMinute:
             addLabel(withName: ["年", "月", "日", "时", "分"])
@@ -320,8 +321,8 @@ typealias DoneBlock = (_ date:Date) -> ()
             return 3
         }
     }
-
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         let numberArr = getNumberOfRowsInComponent()
         return numberArr[component]
     }
@@ -361,10 +362,10 @@ typealias DoneBlock = (_ date:Date) -> ()
         }
     }
 
-    private func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 40
     }
-    private func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var customLabel = view as? UILabel
         if customLabel == nil {
             customLabel = UILabel()
@@ -457,7 +458,7 @@ typealias DoneBlock = (_ date:Date) -> ()
         customLabel?.textColor = datePickerColor
         return customLabel!
     }
-    private func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch datePickerStyle {
         case .DateStyleShowYearMonthDayHourMinute:
             if component == 0 {
@@ -590,20 +591,20 @@ typealias DoneBlock = (_ date:Date) -> ()
         }
         startDate = scrollToDate
     }
-    private func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if touch.view!.isDescendant(of: self.buttomView){
             return false
         }
         return true
     }
-    public func show(){
+    func show(){
         UIApplication.shared.keyWindow?.addSubview(self)
         UIView.animate(withDuration: 0.3) {
             self.backgroundColor = UIColor.init(white: 0, alpha: 0.4)
             self.layoutIfNeeded()
         }
     }
-    @objc public func dismiss(){
+    @objc func dismiss(){
         UIView.animate(withDuration: 0.3, animations: {
             self.backgroundColor = UIColor.init(white: 0, alpha: 0)
             self.layoutIfNeeded()
@@ -685,3 +686,4 @@ typealias DoneBlock = (_ date:Date) -> ()
         }
     }
 }
+
